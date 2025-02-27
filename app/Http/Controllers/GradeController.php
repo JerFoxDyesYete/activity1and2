@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Grade;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
 
 class GradeController extends Controller
 {
