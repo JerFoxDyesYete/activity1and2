@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Courses;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
@@ -13,7 +12,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        return response()->json(Courses::with('grade')->get());
+        return response()->json(['message' => 'Index route accessed']);
     }
 
     /**
@@ -21,15 +20,7 @@ class CoursesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:45',
-            'description' => 'required|string|max:45',
-            'grade_id' => 'required|exists:grades,grade_id',
-        ]);
-
-        $course = Courses::create($request->all());
-
-        return response()->json(['message' => 'Course created successfully', 'course' => $course], 201);
+        return response()->json(['message' => 'Store route accessed']);
     }
 
     /**
@@ -37,11 +28,7 @@ class CoursesController extends Controller
      */
     public function show($id)
     {
-        $course = Courses::with('grade')->find($id);
-        if (!$course) {
-            return response()->json(['message' => 'Course not found'], 404);
-        }
-        return response()->json($course);
+        return response()->json(['message' => "Show route accessed for ID: $id"]);
     }
 
     /**
@@ -49,20 +36,7 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $course = Courses::find($id);
-        if (!$course) {
-            return response()->json(['message' => 'Course not found'], 404);
-        }
-
-        $request->validate([
-            'name' => 'string|max:45',
-            'description' => 'string|max:45',
-            'grade_id' => 'exists:grades,grade_id',
-        ]);
-
-        $course->update($request->all());
-
-        return response()->json(['message' => 'Course updated successfully', 'course' => $course]);
+        return response()->json(['message' => "Update route accessed for ID: $id"]);
     }
 
     /**
@@ -70,12 +44,6 @@ class CoursesController extends Controller
      */
     public function destroy($id)
     {
-        $course = Courses::find($id);
-        if (!$course) {
-            return response()->json(['message' => 'Course not found'], 404);
-        }
-
-        $course->delete();
-        return response()->json(['message' => 'Course deleted successfully']);
+        return response()->json(['message' => "Destroy route accessed for ID: $id"]);
     }
 }

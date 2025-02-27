@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ExamTypes;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
@@ -13,7 +12,7 @@ class ExamTypesController extends Controller
      */
     public function index()
     {
-        return response()->json(ExamTypes::all());
+        return response()->json(['message' => 'Index route accessed']);
     }
 
     /**
@@ -21,14 +20,7 @@ class ExamTypesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:45',
-            'desc' => 'nullable|string|max:45',
-        ]);
-
-        $examType = ExamTypes::create($request->all());
-
-        return response()->json(['message' => 'Exam Type created successfully', 'exam_type' => $examType], 201);
+        return response()->json(['message' => 'Store route accessed']);
     }
 
     /**
@@ -36,11 +28,7 @@ class ExamTypesController extends Controller
      */
     public function show($id)
     {
-        $examType = ExamTypes::find($id);
-        if (!$examType) {
-            return response()->json(['message' => 'Exam Type not found'], 404);
-        }
-        return response()->json($examType);
+        return response()->json(['message' => "Show route accessed for ID: $id"]);
     }
 
     /**
@@ -48,19 +36,7 @@ class ExamTypesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $examType = ExamTypes::find($id);
-        if (!$examType) {
-            return response()->json(['message' => 'Exam Type not found'], 404);
-        }
-
-        $request->validate([
-            'name' => 'string|max:45',
-            'desc' => 'nullable|string|max:45',
-        ]);
-
-        $examType->update($request->all());
-
-        return response()->json(['message' => 'Exam Type updated successfully', 'exam_type' => $examType]);
+        return response()->json(['message' => "Update route accessed for ID: $id"]);
     }
 
     /**
@@ -68,12 +44,6 @@ class ExamTypesController extends Controller
      */
     public function destroy($id)
     {
-        $examType = ExamTypes::find($id);
-        if (!$examType) {
-            return response()->json(['message' => 'Exam Type not found'], 404);
-        }
-
-        $examType->delete();
-        return response()->json(['message' => 'Exam Type deleted successfully']);
+        return response()->json(['message' => "Destroy route accessed for ID: $id"]);
     }
 }

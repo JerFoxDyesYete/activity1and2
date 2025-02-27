@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Grade;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+use Illuminate\Http\Request;
 
 class GradeController extends Controller
 {
@@ -14,7 +12,7 @@ class GradeController extends Controller
      */
     public function index()
     {
-        return response()->json(Grade::all());
+        return response()->json(['message' => 'Index route accessed']);
     }
 
     /**
@@ -22,13 +20,7 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:45',
-            'desc' => 'nullable|string|max:45',
-        ]);
-
-        $grade = Grade::create($request->all());
-        return response()->json(['message' => 'Grade created successfully', 'grade' => $grade], 201);
+        return response()->json(['message' => 'Store route accessed']);
     }
 
     /**
@@ -36,11 +28,7 @@ class GradeController extends Controller
      */
     public function show($id)
     {
-        $grade = Grade::find($id);
-        if (!$grade) {
-            return response()->json(['message' => 'Grade not found'], 404);
-        }
-        return response()->json($grade);
+        return response()->json(['message' => "Show route accessed for ID: $id"]);
     }
 
     /**
@@ -48,18 +36,7 @@ class GradeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $grade = Grade::find($id);
-        if (!$grade) {
-            return response()->json(['message' => 'Grade not found'], 404);
-        }
-
-        $request->validate([
-            'name' => 'required|string|max:45',
-            'desc' => 'nullable|string|max:45',
-        ]);
-
-        $grade->update($request->all());
-        return response()->json(['message' => 'Grade updated successfully', 'grade' => $grade]);
+        return response()->json(['message' => "Update route accessed for ID: $id"]);
     }
 
     /**
@@ -67,12 +44,6 @@ class GradeController extends Controller
      */
     public function destroy($id)
     {
-        $grade = Grade::find($id);
-        if (!$grade) {
-            return response()->json(['message' => 'Grade not found'], 404);
-        }
-
-        $grade->delete();
-        return response()->json(['message' => 'Grade deleted successfully']);
+        return response()->json(['message' => "Destroy route accessed for ID: $id"]);
     }
 }
