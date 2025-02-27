@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Classrooms;
-use App\Models\Students;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
 
 class ClassroomStudentsController extends Controller
 {
@@ -15,15 +12,7 @@ class ClassroomStudentsController extends Controller
      */
     public function assignStudent($classroom_id, $student_id)
     {
-        $classroom = Classrooms::find($classroom_id);
-        $student = Students::find($student_id);
-
-        if (!$classroom || !$student) {
-            return response()->json(['message' => 'Classroom or Student not found'], 404);
-        }
-
-        $classroom->students()->attach($student_id);
-        return response()->json(['message' => 'Student assigned to classroom successfully']);
+        return response()->json(['message' => "Assign route accessed for classroom ID: $classroom_id, student ID: $student_id"]);
     }
 
     /**
@@ -31,14 +20,6 @@ class ClassroomStudentsController extends Controller
      */
     public function removeStudent($classroom_id, $student_id)
     {
-        $classroom = Classrooms::find($classroom_id);
-        $student = Students::find($student_id);
-
-        if (!$classroom || !$student) {
-            return response()->json(['message' => 'Classroom or Student not found'], 404);
-        }
-
-        $classroom->students()->detach($student_id);
-        return response()->json(['message' => 'Student removed from classroom successfully']);
+        return response()->json(['message' => "Remove route accessed for classroom ID: $classroom_id, student ID: $student_id"]);
     }
 }
