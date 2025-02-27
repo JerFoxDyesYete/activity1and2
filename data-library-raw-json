@@ -1,0 +1,102 @@
+How to populate data:
+sample data only RAW JSON via Thunder Client
+
+teacher
+{
+    "email": "teacher@example.com",
+    "password": "password123",
+    "fname": "John",
+    "lname": "Doe",
+    "dob": "1990-05-21",
+    "phone": "09123456789",
+    "mobile": "09123456789",
+    "status": true
+}
+
+classrooms
+{
+    "year": 2025,
+    "grade_id": 1,
+    "section": "A",
+    "status": true,
+    "remarks": "Science section",
+    "teacher_id": 2
+}
+
+parents
+{
+    "email": "parent@example.com",
+    "password": "password123",
+    "fname": "John",
+    "lname": "Doe",
+    "dob": "1980-05-21",
+    "phone": "09123456789",
+    "mobile": "09123456789",
+    "status": true
+}
+
+
+students
+{
+    "email": "student@example.com",
+    "password": "password123",
+    "fname": "John",
+    "lname": "Doe",
+    "dob": "2005-05-21",
+    "phone": "09123456789",
+    "mobile": "09123456789",
+    "parent_id": 1,
+    "date_of_join": "2025-01-01",
+    "status": true
+}
+
+course
+{
+    "name": "Mathematics",
+    "description": "Basic Math Course",
+    "grade_id": 1
+}
+
+classroomstudent
+*waz know how unsaon pag gamit
+POST http://127.0.0.1:8000/api/classrooms/1/students/5
+DELETE http://127.0.0.1:8000/api/classrooms/1/students/5
+
+exam-types
+{
+    "name": "Multiple Choice",
+    "desc": "Exam with multiple choice answers"
+}
+
+exams
+{
+    "exam_type_id": 1,
+    "name": "Final Exam",
+    "start_date": "2025-06-15"
+}
+
+exam_result
+{
+    "exam_id": 1,
+    "student_id": 5,
+    "course_id": 2,
+    "marks": "85"
+}
+
+exam Attendance
+{
+    "exam_id": 1,
+    "student_id": 5,
+    "status": true,
+    "remarks": "Present"
+}
+
+*working crud feature just change the method to specific needs
+GET - to retrieve all data from the table
+GET{id} - to retrieve specific data using id
+POST - to add/post data to the table
+DELETE{id} - to delete specific data from the table using id.
+PATCH{id} - to update specific datas whein the table using id as identifier.
+
+
+
